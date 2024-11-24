@@ -1,14 +1,20 @@
 cmake_minimum_required(VERSION 3.30)
 project(towns)
 
-set(CMAKE_CXX_STANDARD 23)
+add_executable(${PROJECT_NAME})
 
-add_executable(towns)
+add_subdirectory(lib/raylib)
+add_subdirectory(lib/raylib-cpp)
+
+add_library(raygui INTERFACE)
+target_include_directories(raygui INTERFACE lib/raygui/src)
 
 target_sources(
-    towns
+    ${PROJECT_NAME}
     PUBLIC
-    FILE_SET modules TYPE CXX_MODULES FILES
-    src/main.ixx
-    src/a.ixx
+    src/main.cxx
 )
+
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 23)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE raylib raylib_cpp raygui)
