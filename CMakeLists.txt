@@ -13,6 +13,7 @@ target_sources(
     ${PROJECT_NAME}
     PUBLIC
     src/main.cxx
+    src/app/app.cxx
     src/world/map.cxx
     src/world/chunk.cxx
     src/world/coords.cxx
